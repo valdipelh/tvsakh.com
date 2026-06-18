@@ -1,0 +1,108 @@
+---
+const faqs = [
+  { q: "Какие способы оплаты поддерживаются?", a: "Streampay и FreeKassa для пользователей из России; Stripe — для международных платежей." },
+  { q: "Платёж не прошёл — что делать?", a: "Обычно средства зачисляются за секунды. Если этого не произошло, загрузите чек в разделе поддержки." },
+  { q: "Почему Streampay предлагает международный перевод?", a: "Локальные реквизиты недоступны. Это безопасно и гарантированно — с получением чека." },
+  { q: "Поддерживает ли Sakh TV другие устройства кроме ПК?", a: "Да — Android, Android TV, Apple TV, iPhone и iPad. Пока нет поддержки Tizen и webOS." },
+  { q: "Как установить приложение на Apple TV?", a: "Смотрите раздел «Инструкции» или обратитесь в группу поддержки Apple-устройств." },
+  { q: "Будет ли Sakh TV поддерживать 4K и HDR?", a: "Да, это в разработке. Новый и старый контент будет обновлён." },
+  { q: "Как управлять ТВ-приложением с помощью мыши?", a: "Сейчас поддерживается пульт от телевизора. Поддержка мыши появится в ближайшее время." },
+  { q: "Сколько устройств на одну подписку?", a: "До 5 устройств, либо до 12 с семейным планом." },
+  { q: "Можно ли создать несколько профилей пользователей?", a: "Пока нет — функция находится в разработке." },
+  { q: "Проблемы с синхронизацией звука и видео?", a: "Используйте кнопку «Сообщить о проблеме» или напишите на support@sakh.tv." },
+  { q: "Отсутствуют функции в приложении Android TV?", a: "Отправляйте предложения через чаты разработчиков в Telegram." },
+  { q: "Как получать уведомления о новых эпизодах?", a: "Добавьте шоу в избранное и включите уведомления по email или в Telegram." },
+  { q: "Доступна ли история просмотров?", a: "Да — как в приложении, так и на веб-сайте." },
+  { q: "Доступны ли оригинальные звуковые дорожки?", a: "Да, в основном для фильмов. Для сериалов — по запросу." },
+  { q: "Почему низкая скорость загрузки?", a: "Проверьте подключение к интернету. При необходимости обратитесь в поддержку." },
+];
+---
+
+<section id="faq" class="faq">
+  <div class="container faq__layout">
+    <div class="faq__intro reveal">
+      <span class="section-eyebrow">FAQ</span>
+      <h2 class="section-title">Частые<br /><span class="gradient-text">вопросы</span></h2>
+      <p class="section-sub">Не нашли ответ? Напишите нам в Telegram — поможем быстро.</p>
+      <a href="https://t.me/sakhtvchat" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+        Задать вопрос
+      </a>
+    </div>
+
+    <div class="faq__list reveal" style="transition-delay:.08s">
+      {
+        faqs.map((f, i) => (
+          <details class="faq__item glass" style={`transition-delay:${(i % 5) * 0.04}s`}>
+            <summary class="faq__q">
+              <span>{f.q}</span>
+              <svg class="faq__icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="faq__a"><p>{f.a}</p></div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq__layout {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+  .faq__intro { position: sticky; top: 110px; }
+  .faq__intro .btn { margin-top: 1.5rem; }
+
+  .faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .faq__item {
+    border-radius: var(--r-md);
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+  }
+  .faq__item[open] { border-color: var(--glass-border-bright); }
+  .faq__item[open] .faq__icon { transform: rotate(180deg); }
+
+  .faq__q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.15rem 1.4rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.02rem;
+    list-style: none;
+  }
+  .faq__q::-webkit-details-marker { display: none; }
+
+  .faq__icon {
+    flex-shrink: 0;
+    color: var(--text-mute);
+    transition: transform 0.35s var(--ease-spring), color 0.3s ease;
+  }
+  .faq__item[open] .faq__icon { color: var(--neon-fuchsia); }
+
+  .faq__a {
+    padding: 0 1.4rem 1.25rem;
+    color: var(--text-mute);
+    line-height: 1.6;
+    animation: faqOpen 0.35s var(--ease-out);
+  }
+  @keyframes faqOpen {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  @media (max-width: 860px) {
+    .faq__layout { grid-template-columns: 1fr; }
+    .faq__intro { position: static; }
+  }
+</style>

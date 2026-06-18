@@ -1,0 +1,223 @@
+---
+const guides = [
+  {
+    id: "androidtv",
+    label: "Android TV",
+    short: "Приставки и ТВ на Android",
+    steps: [
+      "Установите из Google Play приложение <b>Downloader for TV</b> (начните набирать <code>downloader</code> — оно будет первым в списке).",
+      "Введите ссылку <code>https://sakh.tv/app/androidtv</code> и нажмите кнопку <b>GO</b>.",
+      "Приложение скачает APK, запросит разрешение на установку и установит приложение.",
+    ],
+    note: "Группа поддержки в Telegram: <a href=\"https://t.me/sakhtvandroid\" target=\"_blank\" rel=\"noopener\">@sakhtvandroid</a>",
+  },
+  {
+    id: "android",
+    label: "Android",
+    short: "Телефоны и планшеты",
+    steps: [
+      "Скачайте приложение по ссылке <a href=\"https://sakhtv.club/app/android\" target=\"_blank\" rel=\"noopener\">sakhtv.club/app/android</a>.",
+      "Установите приложение и предоставьте необходимые разрешения.",
+    ],
+    note: "Группа поддержки в Telegram: <a href=\"https://t.me/sakhtvandroid\" target=\"_blank\" rel=\"noopener\">@sakhtvandroid</a>",
+  },
+  {
+    id: "appletv",
+    label: "Apple TV",
+    short: "tvOS 16+ · PRO-аккаунт",
+    steps: [
+      "Приложение находится в <b>открытом бета-тестировании</b>. Установите <b>TestFlight</b> на Apple TV.",
+      "Установите <b>TestFlight</b> на ваш iPhone.",
+      "Если вы уже участвовали в тестировании iOS — приложение будет доступно сразу. Иначе перейдите по приглашению с устройства с вашим Apple ID.",
+      "После установки TestFlight на Apple TV автоматически появится приложение <b>SakhCast</b>.",
+    ],
+    note: "Минимум: tvOS 16 и выше, PRO-аккаунт.",
+  },
+  {
+    id: "ios",
+    label: "iOS / iPadOS",
+    short: "iPhone и iPad · 16+",
+    steps: [
+      "Приложение в <b>открытом бета-тестировании</b>. Установите <b>TestFlight</b> из App Store.",
+      "После установки TestFlight перейдите по ссылке-приглашению, чтобы присоединиться к тестированию.",
+    ],
+    note: "Минимум: iOS / iPadOS 16+, PRO-аккаунт.",
+  },
+  {
+    id: "smarttv",
+    label: "Smart TV",
+    short: "ТВ без Android TV / Google TV",
+    steps: [
+      "На новых ТВ с Android TV / Google TV установите наше приложение.",
+      "Для ТВ без Android TV рекомендуем приставку — например <b>Xiaomi Mi Box</b>: она превратит старый телевизор в современное устройство.",
+      "Откройте в браузере старую версию сайта <a href=\"https://old.sakhtv.club\" target=\"_blank\" rel=\"noopener\">old.sakhtv.club</a>.",
+      "Для очень старых устройств без современных протоколов шифрования — HTTP-версия <code>http://old.sakhtv.club</code>.",
+    ],
+    note: "⚠️ Поддержка ForkPlayer прекращена — работает только просмотр сериалов, фильмы недоступны.",
+  },
+];
+---
+
+<section id="instructions" class="inst">
+  <div class="container">
+    <div class="inst__head center-col reveal">
+      <span class="section-eyebrow">Инструкции</span>
+      <h2 class="section-title">Запуск за пару минут<br /><span class="gradient-text">на любом устройстве</span></h2>
+      <p class="section-sub">Выберите свою платформу — пошаговая установка без сложных настроек.</p>
+    </div>
+
+    <div class="inst__panel glass reveal" style="transition-delay:.1s">
+      <div class="inst__tabs" role="tablist" aria-label="Платформы">
+        {
+          guides.map((g, i) => (
+            <button
+              class="inst__tab"
+              role="tab"
+              aria-selected={i === 0 ? "true" : "false"}
+              aria-controls={`panel-${g.id}`}
+              id={`tab-${g.id}`}
+              data-tab={g.id}
+            >
+              {g.label}
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="inst__panels">
+        {
+          guides.map((g, i) => (
+            <div
+              class={`inst__panel-content ${i === 0 ? "is-active" : ""}`}
+              role="tabpanel"
+              id={`panel-${g.id}`}
+              aria-labelledby={`tab-${g.id}`}
+              data-panel={g.id}
+              hidden={i !== 0}
+            >
+              <p class="inst__short">{g.short}</p>
+              <ol class="inst__steps">
+                {g.steps.map((s, idx) => (
+                  <li class="inst__step">
+                    <span class="inst__step-num">{idx + 1}</span>
+                    <span class="inst__step-text" set:html={s} />
+                  </li>
+                ))}
+              </ol>
+              <p class="inst__note" set:html={g.note} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .inst__head { margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+
+  .inst__panel {
+    overflow: hidden;
+    border-radius: var(--r-xl);
+  }
+
+  .inst__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .inst__tab {
+    padding: 0.7rem 1.1rem;
+    border-radius: var(--r-pill);
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--text-mute);
+    transition: color 0.25s ease, background 0.25s ease;
+  }
+  .inst__tab:hover { color: var(--text-soft); background: var(--glass); }
+  .inst__tab[aria-selected="true"] {
+    color: #fff;
+    background: var(--grad-accent);
+    box-shadow: 0 6px 20px -8px var(--glow-fuchsia);
+  }
+
+  .inst__panels { padding: clamp(1.5rem, 3vw, 2.5rem); }
+
+  .inst__panel-content { animation: fadeIn 0.4s var(--ease-out); }
+  .inst__panel-content[hidden] { display: none; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  .inst__short {
+    color: var(--text-mute);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .inst__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    counter-reset: step;
+  }
+  .inst__step {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .inst__step-num {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--grad-accent-soft);
+    border: 1px solid var(--glass-border-bright);
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .inst__step-text {
+    padding-top: 0.35rem;
+    color: var(--text-soft);
+    line-height: 1.6;
+  }
+  .inst__step-text :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    padding: 0.15em 0.45em;
+    border-radius: 7px;
+    background: rgba(124, 92, 255, 0.14);
+    color: var(--neon-violet);
+    border: 1px solid rgba(124, 92, 255, 0.2);
+  }
+  .inst__step-text :global(a) {
+    color: var(--neon-cyan);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .inst__step-text :global(b) { color: var(--text); font-weight: 700; }
+
+  .inst__note {
+    margin-top: 1.75rem;
+    padding: 0.9rem 1.1rem;
+    border-radius: var(--r-md);
+    background: rgba(255, 179, 71, 0.06);
+    border: 1px solid rgba(255, 179, 71, 0.18);
+    color: var(--text-soft);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .inst__note :global(a) { color: var(--neon-cyan); }
+
+  @media (max-width: 540px) {
+    .inst__tabs { gap: 0.2rem; }
+    .inst__tab { padding: 0.6rem 0.8rem; font-size: 0.85rem; }
+  }
+</style>

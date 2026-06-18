@@ -1,0 +1,147 @@
+---
+const year = new Date().getFullYear();
+const cols = [
+  {
+    title: "Платформы",
+    links: [
+      { label: "Android", href: "https://sakhtv.club/app/android" },
+      { label: "Android TV", href: "https://sakh.tv/app/androidtv" },
+      { label: "Apple TV", href: "#instructions" },
+      { label: "iOS / iPadOS", href: "#instructions" },
+    ],
+  },
+  {
+    title: "Сообщество",
+    links: [
+      { label: "Telegram-чат", href: "https://t.me/sakhtvchat" },
+      { label: "Поддержка Android", href: "https://t.me/sakhtvandroid" },
+      { label: "Поддержка Apple", href: "https://t.me/+A2HN43PdV0ZjNzgy" },
+    ],
+  },
+  {
+    title: "Сервис",
+    links: [
+      { label: "Смотреть", href: "https://sakhtv.club/" },
+      { label: "PRO-подписка", href: "#pricing" },
+      { label: "FAQ", href: "#faq" },
+      { label: "Поддержка", href: "mailto:support@sakh.tv" },
+    ],
+  },
+];
+---
+
+<footer class="footer">
+  <div class="container footer__top">
+    <div class="footer__brand">
+      <a href="#hero" class="footer__logo">
+        <svg width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
+          <defs>
+            <linearGradient id="footg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#7c5cff" />
+              <stop offset="0.5" stop-color="#ff4d9d" />
+              <stop offset="1" stop-color="#ffb347" />
+            </linearGradient>
+          </defs>
+          <path d="M24 22 L46 32 L24 42 Z" fill="url(#footg)" />
+        </svg>
+        Sakh <span class="gradient-text">TV</span>
+      </a>
+      <p class="footer__tag">
+        Стриминговый сервис для просмотра фильмов и сериалов в HD-качестве. Без рекламы.
+      </p>
+      <a href="mailto:support@sakh.tv" class="footer__mail">support@sakh.tv</a>
+    </div>
+
+    {
+      cols.map((c) => (
+        <nav class="footer__col" aria-label={c.title}>
+          <h3 class="footer__col-title">{c.title}</h3>
+          <ul>
+            {c.links.map((l) => (
+              <li><a href={l.href} target={l.href.startsWith("http") ? "_blank" : undefined} rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}>{l.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+      ))
+    }
+  </div>
+
+  <div class="container footer__bottom">
+    <p>© {year} Sakh TV · Сах ТВ. Все права защищены.</p>
+    <p class="footer__made">Сделано для тех, кто любит кино</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: relative;
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--glass-border);
+    background: linear-gradient(180deg, transparent, rgba(124, 92, 255, 0.04));
+  }
+
+  .footer__top {
+    display: grid;
+    grid-template-columns: 1.6fr repeat(3, 1fr);
+    gap: 2.5rem;
+    padding-bottom: 3rem;
+  }
+
+  .footer__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+  }
+  .footer__tag {
+    color: var(--text-mute);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    max-width: 34ch;
+    margin-bottom: 1rem;
+  }
+  .footer__mail {
+    color: var(--neon-cyan);
+    font-size: 0.92rem;
+  }
+
+  .footer__col-title {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-faint);
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  .footer__col ul { display: flex; flex-direction: column; gap: 0.65rem; }
+  .footer__col a {
+    color: var(--text-soft);
+    font-size: 0.93rem;
+    transition: color 0.25s ease;
+  }
+  .footer__col a:hover { color: var(--text); }
+
+  .footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--glass-border);
+    color: var(--text-faint);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 760px) {
+    .footer__top { grid-template-columns: 1fr 1fr; }
+    .footer__brand { grid-column: 1 / -1; }
+  }
+  @media (max-width: 460px) {
+    .footer__top { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,159 @@
+---
+const features = [
+  {
+    title: "Без рекламы",
+    desc: "Ничего не отвлекает от сюжета. Чистый просмотр от заставки до титров.",
+    icon: "M13 10V3L4 14h7v7l9-11h-7z",
+    span: "wide",
+    accent: "violet",
+  },
+  {
+    title: "Скачивание офлайн",
+    desc: "Загружайте серии и фильмы на устройство и смотрите без интернета — в дороге, в самолёте.",
+    icon: "M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3",
+    span: "tall",
+    accent: "fuchsia",
+  },
+  {
+    title: "До 5 устройств",
+    desc: "Семейный доступ — каждый смотрит своё одновременно.",
+    icon: "M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z",
+    span: "normal",
+    accent: "amber",
+  },
+  {
+    title: "HD-качество",
+    desc: "Высокое качество видео и звука на любом экране.",
+    icon: "M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z",
+    span: "normal",
+    accent: "cyan",
+  },
+  {
+    title: "Все платформы",
+    desc: "Android, Android TV, Apple TV, iPhone, iPad — единый аккаунт повсюду.",
+    icon: "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z",
+    span: "normal",
+    accent: "violet",
+  },
+];
+---
+
+<section id="features" class="features">
+  <div class="container">
+    <div class="features__head center-col reveal">
+      <span class="section-eyebrow">Возможности</span>
+      <h2 class="section-title">Создано для тех,<br /><span class="gradient-text">кто любит кино</span></h2>
+      <p class="section-sub">
+        Всё, что нужно для идеального просмотра — в одном сервисе.
+        Никакой рекламы, никаких компромиссов по качеству.
+      </p>
+    </div>
+
+    <div class="bento reveal">
+      {
+        features.map((f, i) => (
+          <article class={`bento__card glow-card ${f.span === "wide" ? "bento__card--wide" : ""} ${f.span === "tall" ? "bento__card--tall" : ""}`} style={`transition-delay:${i * 0.06}s`}>
+            <div class={`bento__icon bento__icon--${f.accent}`}>
+              <svg width="26" height="26" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" d={f.icon} />
+              </svg>
+            </div>
+            <h3 class="bento__title">{f.title}</h3>
+            <p class="bento__desc">{f.desc}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .features__head {
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(180px, auto);
+    gap: clamp(0.9rem, 1.6vw, 1.3rem);
+  }
+
+  .bento__card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: clamp(1.4rem, 2.2vw, 1.9rem);
+    border-radius: var(--r-lg);
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bento__card--wide {
+    grid-column: span 2;
+  }
+  .bento__card--tall {
+    grid-row: span 2;
+  }
+
+  /* Декоративное свечение внутри карточек */
+  .bento__card::after {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0;
+    top: -40px;
+    right: -40px;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .bento__card:hover::after { opacity: 0.5; }
+  .bento__icon--violet ~ ::after, .bento__card:has(.bento__icon--violet)::after { background: var(--neon-violet); }
+  .bento__card:has(.bento__icon--fuchsia)::after { background: var(--neon-fuchsia); }
+  .bento__card:has(.bento__icon--amber)::after { background: var(--neon-amber); }
+  .bento__card:has(.bento__icon--cyan)::after { background: var(--neon-cyan); }
+
+  .bento__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--r-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--glass-border);
+    margin-bottom: auto;
+  }
+  .bento__icon--violet { color: var(--neon-violet); background: rgba(124, 92, 255, 0.1); }
+  .bento__icon--fuchsia { color: var(--neon-fuchsia); background: rgba(255, 77, 157, 0.1); }
+  .bento__icon--amber { color: var(--neon-amber); background: rgba(255, 179, 71, 0.1); }
+  .bento__icon--cyan { color: var(--neon-cyan); background: rgba(56, 232, 255, 0.1); }
+
+  .bento__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .bento__desc {
+    color: var(--text-mute);
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 860px) {
+    .bento { grid-template-columns: repeat(2, 1fr); }
+    .bento__card--wide { grid-column: span 2; }
+    .bento__card--tall { grid-row: span 1; }
+  }
+  @media (max-width: 520px) {
+    .bento { grid-template-columns: 1fr; }
+    .bento__card--wide { grid-column: span 1; }
+  }
+</style>

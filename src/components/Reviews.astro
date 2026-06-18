@@ -1,0 +1,190 @@
+---
+const reviews = [
+  {
+    text: "Отличный сервис! Качество видео превосходное, интерфейс интуитивно понятный. Смотрю как на телевизоре, так и на телефоне — везде работает идеально.",
+    name: "Алексей М.",
+    role: "Пользователь более года",
+    rating: 5,
+  },
+  {
+    text: "Большая база фильмов и сериалов. Особенно радует быстрая загрузка и отсутствие рекламы. Семейная подписка очень выгодная!",
+    name: "Мария К.",
+    role: "Семейная подписка",
+    rating: 5,
+  },
+  {
+    text: "Использую приложение на Apple TV — всё работает стабильно. Техподдержка быстро отвечает и помогает решить любые вопросы.",
+    name: "Дмитрий П.",
+    role: "Apple TV пользователь",
+    rating: 4,
+  },
+  {
+    text: "Лучший стриминговый сервис, который я использовал. Удобный поиск, качественный контент и разумные цены. Рекомендую всем!",
+    name: "Екатерина Л.",
+    role: "Активный пользователь",
+    rating: 5,
+  },
+  {
+    text: "Кстати хотел поблагодарить команду за раздел фильмы — очень удобно, давно не хватало такого сервиса.",
+    name: "Женя Скринчук",
+    role: "Довольный пользователь",
+    rating: 5,
+  },
+  {
+    text: "Здравствуйте, просто хочу сказать спасибо за быстрое добавление фильма — добавили озвучку за два дня, уже всё было готово.",
+    name: "Ксения",
+    role: "Благодарный пользователь",
+    rating: 5,
+  },
+  {
+    text: "За десять лет пользования Sakh TV рад, что есть такой ресурс, который во многом превосходит качеством другие сайты. Администраторы молодцы, всегда тактично общаются и радуют нововведениями.",
+    name: "Владислав",
+    role: "Пользователь 10+ лет",
+    rating: 5,
+  },
+  {
+    text: "Невероятно удобно смотреть сериалы в дороге! Скачал несколько сезонов на планшет и наслаждаюсь просмотром в самолёте. Качество отличное, батарея расходуется экономно.",
+    name: "Андрей В.",
+    role: "Частый путешественник",
+    rating: 5,
+  },
+  {
+    text: "Семья в восторге! Дети смотрят мультики на планшете, я — сериалы на телефоне, муж — на телевизоре. Всё одновременно и без тормозов. PRO окупается за месяц!",
+    name: "Анна С.",
+    role: "Многодетная мама",
+    rating: 5,
+  },
+];
+
+const initial = (name: string) => name.charAt(0);
+---
+
+<section id="reviews" class="reviews">
+  <div class="container">
+    <div class="reviews__head reveal">
+      <span class="section-eyebrow">Отзывы</span>
+      <h2 class="section-title">Нам доверяют<br /><span class="gradient-text">зрители</span></h2>
+      <div class="reviews__rating">
+        <span class="reviews__score">4.8</span>
+        <span class="reviews__stars" aria-label="4.8 из 5">
+          {"★★★★★".split("").map(() => <span>★</span>)}
+        </span>
+        <span class="reviews__count">на основе 9 отзывов</span>
+      </div>
+    </div>
+
+    <div class="reviews__grid reveal">
+      {
+        reviews.map((r, i) => (
+          <figure class="review glass glow-card" style={`transition-delay:${(i % 3) * 0.08}s`}>
+            <div class="review__stars" aria-label={`${r.rating} из 5`}>
+              {Array.from({ length: 5 }).map((_, idx) => (
+                <span class={idx < r.rating ? "on" : "off"}>★</span>
+              ))}
+            </div>
+            <blockquote class="review__text">«{r.text}»</blockquote>
+            <figcaption class="review__author">
+              <span class="review__avatar">{initial(r.name)}</span>
+              <span class="review__meta">
+                <strong>{r.name}</strong>
+                <small>{r.role}</small>
+              </span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews__head {
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+  .reviews__rating {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+  .reviews__score {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: var(--grad-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .reviews__stars {
+    display: inline-flex;
+    color: var(--neon-amber);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    filter: drop-shadow(0 0 6px rgba(255, 179, 71, 0.5));
+  }
+  .reviews__count {
+    color: var(--text-mute);
+    font-size: 0.9rem;
+  }
+
+  .reviews__grid {
+    columns: 3;
+    column-gap: clamp(0.9rem, 1.6vw, 1.3rem);
+  }
+
+  .review {
+    break-inside: avoid;
+    margin-bottom: clamp(0.9rem, 1.6vw, 1.3rem);
+    padding: 1.6rem;
+    border-radius: var(--r-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .review__stars {
+    display: flex;
+    gap: 2px;
+    color: var(--neon-amber);
+    font-size: 0.95rem;
+  }
+  .review__stars .off { color: var(--text-faint); }
+
+  .review__text {
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: var(--text-soft);
+  }
+
+  .review__author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+  .review__avatar {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--grad-accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+    box-shadow: 0 6px 18px -6px var(--glow-fuchsia);
+  }
+  .review__meta { display: flex; flex-direction: column; line-height: 1.25; }
+  .review__meta strong { font-size: 0.96rem; }
+  .review__meta small { color: var(--text-mute); font-size: 0.82rem; }
+
+  @media (max-width: 860px) {
+    .reviews__grid { columns: 2; }
+  }
+  @media (max-width: 540px) {
+    .reviews__grid { columns: 1; }
+  }
+</style>

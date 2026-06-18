@@ -1,0 +1,402 @@
+---
+const platforms = [
+  { name: "Android", icon: "M17.523 15.34c-.566 0-.972-.406-.972-.972s.406-.972.972-.972.972.406.972.972-.406.972-.972.972m-11.046 0c-.566 0-.972-.406-.972-.972s.406-.972.972-.972.972.406.972.972-.406.972-.972.972m11.405-6.02l1.94-2.99c.04-.06.02-.14-.04-.18-.06-.04-.14-.02-.18.04l-1.96 3.02c-1.68-.77-3.56-1.2-5.66-1.2s-3.98.43-5.66 1.2l-1.96-3.02c-.04-.06-.12-.08-.18-.04-.06.04-.08.12-.04.18l1.94 2.99C3.7 10.86 2 13.32 2 16.16h20c0-2.84-1.7-5.3-4.118-6.84" },
+  { name: "iOS", icon: "M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" },
+  { name: "Apple TV", icon: "M3 5h18a1 1 0 011 1v12a1 1 0 01-1 1H3a1 1 0 01-1-1V6a1 1 0 011-1zm10.5 4.5a2.5 2.5 0 00-2.5 2.5h1a1.5 1.5 0 113 0v.5h-3.5a2.5 2.5 0 005 0v-.5a2.5 2.5 0 00-2.5-2.5zM9 13H7.5v-1.5H6V13H4.5v1H6v1.5h1.5V14H9v-1zm10.5.5a1 1 0 100 2 1 1 0 000-2z" },
+  { name: "Android TV", icon: "M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM10 16.5l-5-2.85v-3.3l5-2.85v9zM11.5 8.5l-3.5-2 3.5-2v4zM20 16.5l-5-2.85v-3.3l5-2.85v9z" },
+];
+
+const stats = [
+  { value: "4.8★", label: "Рейтинг" },
+  { value: "HD", label: "Качество" },
+  { value: "0₽", label: "Рекламы" },
+  { value: "5", label: "Устройств" },
+];
+---
+
+<section id="hero" class="hero">
+  <div class="hero__orbs" aria-hidden="true">
+    <span class="orb orb--violet"></span>
+    <span class="orb orb--fuchsia"></span>
+    <span class="orb orb--amber"></span>
+  </div>
+
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <a class="hero__pill reveal" href="#reviews">
+        <span class="hero__pill-dot"></span>
+        Более 9 отзывов · рейтинг 4.8
+        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M9 5l7 7-7 7"/></svg>
+      </a>
+
+      <h1 class="hero__title display reveal" style="transition-delay:.05s">
+        Кино, которое<br />
+        <span class="gradient-text">хочется смотреть</span>
+      </h1>
+
+      <p class="hero__lede reveal" style="transition-delay:.12s">
+        Sakh TV (Сах ТВ) — стриминговый сервис, где все фильмы и сериалы
+        в HD-качестве. Без рекламы, с загрузкой офлайн — на любом вашем устройстве.
+      </p>
+
+      <div class="hero__cta reveal" style="transition-delay:.18s">
+        <a href="https://sakhtv.club/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          Начать смотреть
+        </a>
+        <a href="https://t.me/sakhtvchat" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+          Telegram-чат
+        </a>
+      </div>
+
+      <ul class="hero__stats reveal" style="transition-delay:.24s">
+        {stats.map((s) => (
+          <li class="hero__stat">
+            <span class="hero__stat-value">{s.value}</span>
+            <span class="hero__stat-label">{s.label}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="hero__visual reveal" style="transition-delay:.2s" aria-hidden="true">
+      <div class="screen glass glow-card">
+        <div class="screen__bar">
+          <span></span><span></span><span></span>
+          <em>sakhtv.club</em>
+        </div>
+        <div class="screen__stage">
+          <div class="screen__poster">
+            <img class="screen__poster-img" src="/img/interface.jpg" alt="Интерфейс Sakh TV — каталог фильмов и сериалов" width="348" height="464" loading="eager" />
+            <div class="screen__poster-glow"></div>
+            <div class="screen__shimmer"></div>
+          </div>
+        </div>
+        <div class="screen__chips">
+          {platforms.map((p) => (
+            <span class="screen__chip">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d={p.icon}/></svg>
+              {p.name}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div class="float-card float-card--quality glass glow-card">
+        <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <div><strong>Без рекламы</strong><small>Чистый просмотр</small></div>
+      </div>
+
+      <div class="float-card float-card--download glass glow-card">
+        <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
+        <div><strong>Скачивание</strong><small>Смотри офлайн</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding-top: 120px;
+    padding-bottom: 80px;
+    overflow: hidden;
+  }
+
+  .hero__orbs {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.55;
+    will-change: transform;
+  }
+  .orb--violet {
+    width: 46vw;
+    height: 46vw;
+    max-width: 620px;
+    max-height: 620px;
+    top: -8%;
+    left: -6%;
+    background: radial-gradient(circle, var(--neon-violet), transparent 65%);
+    animation: drift1 22s var(--ease-out) infinite alternate;
+  }
+  .orb--fuchsia {
+    width: 40vw;
+    height: 40vw;
+    max-width: 540px;
+    max-height: 540px;
+    top: 4%;
+    right: -8%;
+    background: radial-gradient(circle, var(--neon-fuchsia), transparent 65%);
+    animation: drift2 26s var(--ease-out) infinite alternate;
+  }
+  .orb--amber {
+    width: 34vw;
+    height: 34vw;
+    max-width: 460px;
+    max-height: 460px;
+    bottom: -12%;
+    left: 38%;
+    background: radial-gradient(circle, var(--neon-amber), transparent 65%);
+    opacity: 0.32;
+    animation: drift3 30s var(--ease-out) infinite alternate;
+  }
+
+  @keyframes drift1 { to { transform: translate(8%, 10%) scale(1.12); } }
+  @keyframes drift2 { to { transform: translate(-10%, 8%) scale(1.08); } }
+  @keyframes drift3 { to { transform: translate(6%, -10%) scale(1.15); } }
+
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 5rem);
+  }
+
+  .hero__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.5rem 0.95rem 0.5rem 0.7rem;
+    border-radius: var(--r-pill);
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    margin-bottom: 1.75rem;
+    transition: border-color 0.3s ease, transform 0.3s var(--ease-spring);
+  }
+  .hero__pill:hover { border-color: var(--glass-border-bright); transform: translateY(-2px); }
+  .hero__pill-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--grad-accent);
+    box-shadow: 0 0 10px var(--glow-violet);
+  }
+
+  .hero__title {
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__lede {
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
+    color: var(--text-soft);
+    max-width: 52ch;
+    margin-bottom: 2.25rem;
+  }
+
+  .hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-bottom: 3rem;
+  }
+
+  .hero__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    max-width: 480px;
+    background: var(--glass-border);
+    border-radius: var(--r-md);
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+  }
+  .hero__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.95rem 0.5rem;
+    background: rgba(10, 8, 19, 0.6);
+    text-align: center;
+  }
+  .hero__stat-value {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: var(--grad-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero__stat-label {
+    font-size: 0.72rem;
+    color: var(--text-mute);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- Визуал: экран + плавающие карточки ---------- */
+  .hero__visual {
+    position: relative;
+    perspective: 1400px;
+  }
+
+  .screen {
+    padding: 0;
+    overflow: hidden;
+    transform: rotateY(-9deg) rotateX(4deg) rotate(-1.5deg);
+    transition: transform 0.6s var(--ease-out);
+    animation: floatScreen 7s ease-in-out infinite;
+  }
+  .screen:hover { transform: rotateY(-5deg) rotateX(2deg) rotate(-0.5deg); }
+
+  @keyframes floatScreen {
+    0%, 100% { transform: rotateY(-9deg) rotateX(4deg) rotate(-1.5deg) translateY(0); }
+    50% { transform: rotateY(-9deg) rotateX(4deg) rotate(-1.5deg) translateY(-14px); }
+  }
+
+  .screen__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .screen__bar span {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+  }
+  .screen__bar span:nth-child(1) { background: #ff5f57; }
+  .screen__bar span:nth-child(2) { background: #ffbd2e; }
+  .screen__bar span:nth-child(3) { background: #28c840; }
+  .screen__bar em {
+    margin-left: auto;
+    font-style: normal;
+    font-size: 0.74rem;
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+  }
+
+  .screen__stage {
+    padding: 1.3rem;
+  }
+
+  .screen__poster {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: var(--r-md);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-2);
+  }
+  .screen__poster-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .screen__poster-glow {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(circle at 30% 20%, rgba(124, 92, 255, 0.25), transparent 55%);
+    pointer-events: none;
+  }
+  .screen__poster::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, transparent 60%, rgba(6, 5, 9, 0.5));
+    pointer-events: none;
+  }
+
+  .screen__shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
+    animation: shimmer 4.5s linear infinite;
+  }
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .screen__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0 1.3rem 1.3rem;
+  }
+  .screen__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.75rem;
+    border-radius: var(--r-pill);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    font-size: 0.78rem;
+    color: var(--text-soft);
+  }
+
+  .float-card {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.8rem 1rem;
+    border-radius: var(--r-md);
+    color: var(--text);
+    animation: floatCard 5s ease-in-out infinite;
+  }
+  .float-card svg { color: var(--neon-violet); flex-shrink: 0; }
+  .float-card--download svg { color: var(--neon-fuchsia); }
+  .float-card strong { display: block; font-size: 0.9rem; line-height: 1.2; }
+  .float-card small { color: var(--text-mute); font-size: 0.76rem; }
+
+  .float-card--quality {
+    top: 8%;
+    left: -8%;
+    animation-delay: -1.5s;
+  }
+  .float-card--download {
+    bottom: 10%;
+    right: -6%;
+  }
+  @keyframes floatCard {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  @media (max-width: 940px) {
+    .hero__inner { grid-template-columns: 1fr; }
+    .hero__visual { order: -1; max-width: 440px; margin-inline: auto; }
+    .screen { transform: none; animation: none; }
+    .float-card--quality { left: 0; }
+    .float-card--download { right: 0; }
+  }
+  @media (max-width: 520px) {
+    .hero__stats { grid-template-columns: repeat(2, 1fr); }
+    .hero__stats .hero__stat:nth-child(-n+2) { border-bottom: 1px solid var(--glass-border); }
+    .float-card { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .orb, .screen, .screen__shimmer, .float-card { animation: none !important; }
+  }
+</style>

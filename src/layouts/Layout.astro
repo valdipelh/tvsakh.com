@@ -1,0 +1,123 @@
+---
+import "../styles/global.css";
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const brandName = "Sakh TV";
+
+const {
+  title = "Sakh TV (Сах ТВ) — фильмы и сериалы онлайн в HD без рекламы",
+  description =
+    "Sakh TV (Сах ТВ) — стриминговый сервис для просмотра фильмов и сериалов в HD-качестве. Смотрите онлайн без рекламы на Android, iOS, Apple TV и Android TV. Скачивайте контент и смотрите офлайн.",
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="48x48 32x32 16x16" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="mask-icon" href="/favicon.svg" color="#1fb6ff" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="Sakh TV, Сах ТВ, сах тв, SakhTV, СахТВ, стриминг фильмы, сериалы онлайн, смотреть фильмы онлайн, фильмы HD, сериалы HD, смотреть фильмы без рекламы, скачать фильмы, онлайн кинотеатр, видео по запросу, Apple TV, Android TV, iOS, Android, стриминговый сервис, tvsakh"
+    />
+    <meta name="author" content={brandName} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="language" content="Russian" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={brandName} />
+    <meta property="og:locale" content="ru_RU" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#060509" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content={brandName} />
+
+    <!-- DNS / preconnect -->
+    <link rel="dns-prefetch" href="https://sakhtv.club" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: "Sakh TV",
+      alternateName: "Сах ТВ",
+      operatingSystem: "Android, iOS, Apple TV, Android TV",
+      applicationCategory: "Entertainment",
+      description,
+      url: canonical,
+      offers: { "@type": "Offer", price: "0", priceCurrency: "RUB" },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.8",
+        reviewCount: "9",
+        bestRating: "5",
+      },
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "Sakh TV",
+      alternateName: "Сах ТВ",
+      url: canonical,
+      inLanguage: "ru",
+      potentialAction: {
+        "@type": "SearchAction",
+        target: "https://sakhtv.club/search?q={search_term_string}",
+        "query-input": "required name=search_term_string",
+      },
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Sakh TV",
+      alternateName: "Сах ТВ",
+      url: canonical,
+      logo: new URL("/web-app-manifest-512x512.png", Astro.site).href,
+      sameAs: [
+        "https://sakhtv.club",
+        "https://t.me/sakhtvchat",
+        "https://t.me/sakhtvandroid",
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: "support@sakh.tv",
+        contactType: "customer service",
+      },
+    })} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

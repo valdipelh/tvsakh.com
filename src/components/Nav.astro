@@ -1,0 +1,194 @@
+---
+const links = [
+  { href: "#hero", label: "Главная" },
+  { href: "#features", label: "Возможности" },
+  { href: "#reviews", label: "Отзывы" },
+  { href: "#faq", label: "FAQ" },
+  { href: "#pricing", label: "PRO" },
+];
+---
+
+<header class="nav" id="nav">
+  <div class="nav__inner container">
+    <a href="#hero" class="nav__brand" aria-label="Sakh TV — на главную">
+      <svg class="nav__logo" width="34" height="34" viewBox="0 0 64 64" aria-hidden="true">
+        <defs>
+          <linearGradient id="navg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#7c5cff" />
+            <stop offset="0.5" stop-color="#ff4d9d" />
+            <stop offset="1" stop-color="#ffb347" />
+          </linearGradient>
+        </defs>
+        <rect width="64" height="64" rx="16" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" />
+        <path d="M24 22 L46 32 L24 42 Z" fill="url(#navg)" />
+      </svg>
+      <span class="nav__brand-text">Sakh <span class="gradient-text">TV</span></span>
+    </a>
+
+    <nav class="nav__links" id="nav-menu" aria-label="Основная навигация">
+      {
+        links.map((l) => (
+          <a href={l.href} class="nav__link" data-nav-link>
+            {l.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="nav__actions">
+      <a href="https://sakhtv.club/" class="btn btn-primary nav__cta" target="_blank" rel="noopener noreferrer">
+        Смотреть
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      </a>
+      <button class="nav__toggle" id="nav-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: background 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
+    border-bottom: 1px solid transparent;
+  }
+
+  .nav.scrolled {
+    background: rgba(8, 6, 15, 0.72);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    border-bottom-color: var(--glass-border);
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 74px;
+    gap: 1rem;
+  }
+
+  .nav__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: -0.03em;
+  }
+
+  .nav__logo {
+    flex-shrink: 0;
+  }
+
+  .nav__links {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--r-pill);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .nav__link {
+    padding: 0.5rem 0.95rem;
+    border-radius: var(--r-pill);
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--text-soft);
+    transition: color 0.25s ease, background 0.25s ease;
+  }
+
+  .nav__link:hover,
+  .nav__link.active {
+    color: var(--text);
+    background: var(--glass-strong);
+  }
+
+  .nav__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .nav__cta {
+    padding: 0.7rem 1.25rem;
+    font-size: 0.92rem;
+  }
+
+  .nav__toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--r-sm);
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+  }
+
+  .nav__toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    margin-inline: auto;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.35s var(--ease-spring), opacity 0.25s ease;
+  }
+
+  .nav__toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav__toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav__toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  @media (max-width: 860px) {
+    .nav__cta {
+      display: none;
+    }
+    .nav__toggle {
+      display: flex;
+    }
+    .nav__links {
+      position: fixed;
+      inset: 74px var(--gutter) auto var(--gutter);
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.25rem;
+      padding: 0.75rem;
+      border-radius: var(--r-lg);
+      background: rgba(12, 9, 22, 0.92);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      transform: translateY(-12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.4s var(--ease-out), opacity 0.3s ease;
+    }
+    .nav__links.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .nav__link {
+      padding: 0.85rem 1rem;
+      font-size: 1.05rem;
+    }
+  }
+</style>
